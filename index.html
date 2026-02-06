@@ -1,0 +1,1033 @@
+# Loo.id
+Loo 1
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loo Splash Screen</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background-color: #A78BFA; /* Warna ungu sesuai gambar */
+        }
+        /* Container Splash Screen */
+        .splash-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            color: white;
+        }
+        /* Elemen Lingkaran Putih di Pojok Bawah */
+        .circle-accent {
+            position: absolute;
+            bottom: -150px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background-color: white;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        /* Maskot/Logo Loo */
+        .logo-wrapper {
+            z-index: 2;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+        .mascot {
+            width: 100px;
+            height: 130px;
+            background-color: white;
+            border-radius: 50px 50px 20px 20px;
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        /* Mata dan Senyum Maskot */
+        .mascot::before {
+            content: '• •';
+            position: absolute;
+            top: 40px;
+            color: #A78BFA;
+            font-size: 30px;
+            letter-spacing: 5px;
+        }
+        .mascot::after {
+            content: '';
+            position: absolute;
+            top: 65px;
+            width: 20px;
+            height: 10px;
+            border: 3px solid #A78BFA;
+            border-top: 0;
+            border-radius: 0 0 15px 15px;
+        }
+        /* Nama Aplikasi */
+        .app-name {
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        /* Animasi Sederhana */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Menghilangkan Splash Screen (Simulasi) */
+        .fade-out {
+            animation: fadeOut 0.5s forwards;
+            pointer-events: none;
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="splash-container" id="splash">
+        <div class="logo-wrapper">
+            <div class="mascot"></div>
+            <h1 class="app-name">Loo</h1>
+        </div>
+        <div class="circle-accent"></div>
+    </div>
+    <script>
+        // Menghilangkan splash screen setelah 3 detik
+        setTimeout(() => {
+            const splash = document.getElementById('splash');
+            splash.classList.add('fade-out');
+        }, 3000);
+    </script>
+</body>
+</html>
+
+Loo 2
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Loo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #B197FC;
+            --dark-text: #2D2D2D;
+            --bg-light: #F8F9FA;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-purple);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .phone-container {
+            background-color: var(--primary-purple);
+            width: 375px;
+            height: 700px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+        /* Elemen Kucing/Logo */
+        .logo-section {
+            margin-top: 80px;
+            text-align: center;
+        }
+        .logo-placeholder {
+            width: 120px;
+            height: 120px;
+            background: white;
+            mask: url('https://raw.githubusercontent.com/google/material-design-icons/master/src/social/person/materialicons/24px.svg') no-repeat center; /* Ganti dengan SVG kucing jika ada */
+            -webkit-mask: url('https://raw.githubusercontent.com/google/material-design-icons/master/src/social/person/materialicons/24px.svg') no-repeat center;
+            background-color: white;
+            border-radius: 50%; /* Hanya contoh, aslinya bentuk kucing */
+            margin-bottom: 20px;
+        }
+        /* Area Putih di Bawah */
+        .bottom-card {
+            background-color: white;
+            width: 100%;
+            flex-grow: 1;
+            margin-top: 50px;
+            border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+            padding: 40px 25px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        /* Gaya Tombol */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s;
+            border: 2px solid #000;
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .btn-apple { background: white; color: black; }
+        .btn-google { background: white; color: black; }
+        .btn-email { background: white; color: black; }
+        .btn img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .footer-text {
+            color: #888;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer-text a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="phone-container">
+    <div class="logo-section">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="white">
+            <path d="M20 40C20 20 40 10 50 10C60 10 80 20 80 40V70C80 85 65 90 50 90C35 90 20 85 20 70V40Z"/>
+            <circle cx="35" cy="45" r="5" fill="#B197FC"/>
+            <circle cx="65" cy="45" r="5" fill="#B197FC"/>
+            <path d="M45 55Q50 60 55 55" stroke="#B197FC" stroke-width="3" fill="none"/>
+        </svg>
+    </div>
+    <div class="bottom-card">
+        <a href="#" class="btn btn-apple">
+            Sign in with Apple
+        </a>
+        <a href="#" class="btn btn-google">
+            Sign in with Google
+        </a>
+        <a href="#" class="btn btn-email">
+            Continue with email
+        </a>
+        <div class="footer-text">
+            Don't have an account yet?<br>
+            <a href="#">Register one here</a>
+        </div>
+    </div>
+</div>
+
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login MiraiApp - Fitur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #B197FC;
+            --dark-text: #2D2D2D;
+            --error-red: #ff6b6b;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh;
+        }
+
+        .phone-container {
+            background-color: var(--primary-purple);
+            width: 375px; height: 700px;
+            border-radius: 40px;
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            flex: 1;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .bottom-card {
+            background-color: white;
+            border-radius: 40px 40px 0 0;
+            padding: 40px 30px;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+
+        /* Form Styling */
+        .input-group {
+            display: flex; flex-direction: column; gap: 5px;
+        }
+
+        input {
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary-purple);
+        }
+
+        .btn-main {
+            background-color: #000;
+            color: white;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-main:disabled {
+            background-color: #888;
+            cursor: not-allowed;
+        }
+
+        /* Sosmed Login */
+        .divider {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            margin: 10px 0;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-social {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Message */
+        #message {
+            font-size: 13px;
+            text-align: center;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <div class="logo-section">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <path d="M20 40C20 20 40 10 50 10C60 10 80 20 80 40V70C80 85 65 90 50 90C35 90 20 85 20 70V40Z" fill="white"/>
+            <circle cx="35" cy="45" r="5" fill="#B197FC"/>
+            <circle cx="65" cy="45" r="5" fill="#B197FC"/>
+        </svg>
+    </div>
+
+    <div class="bottom-card">
+        <h3 style="margin-top:0; color:#333">Selamat Datang!</h3>
+        
+        <div class="input-group">
+            <input type="email" id="email" placeholder="Alamat Email" required>
+            <input type="password" id="password" placeholder="Kata Sandi" required>
+        </div>
+
+        <div id="message"></div>
+
+        <button class="btn-main" id="loginBtn">Masuk</button>
+
+        <div class="divider">ATAU MASUK DENGAN</div>
+
+        <div class="social-grid">
+            <button class="btn-social">Google</button>
+            <button class="btn-social">Apple</button>
+        </div>
+
+        <div style="text-align:center; font-size:13px; color:#888; margin-top:10px">
+            Belum punya akun? <a href="#" style="color:var(--primary-purple); text-decoration:none; font-weight:700">Daftar</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const loginBtn = document.getElementById('loginBtn');
+    const emailInput = document.getElementById('email');
+    const passInput = document.getElementById('password');
+    const messageDiv = document.getElementById('message');
+
+    loginBtn.addEventListener('click', () => {
+        const email = emailInput.value;
+        const password = passInput.value;
+
+        // Reset pesan
+        messageDiv.innerHTML = "";
+        
+        if (!email || !password) {
+            showError("Harap isi semua kolom!");
+            return;
+        }
+
+        // Simulasi proses login (Loading)
+        loginBtn.innerText = "Memproses...";
+        loginBtn.disabled = true;
+
+        setTimeout(() => {
+            if (email === "user@mirai.com" && password === "123456") {
+                messageDiv.style.color = "green";
+                messageDiv.innerText = "Login Berhasil! Mengalihkan...";
+                // window.location.href = "dashboard.html"; // Arahkan ke dashboard
+            } else {
+                showError("Email atau password salah.");
+                loginBtn.innerText = "Masuk";
+                loginBtn.disabled = false;
+            }
+        }, 1500);
+    });
+
+    function showError(text) {
+        messageDiv.style.color = "var(--error-red)";
+        messageDiv.innerText = text;
+    }
+</script>
+
+</body>
+</html>
+
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiraiApp - Daftar Akun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #B197FC;
+            --dark-text: #2D2D2D;
+            --success-green: #51cf66;
+            --error-red: #ff6b6b;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh;
+        }
+
+        .phone-container {
+            background-color: var(--primary-purple);
+            width: 375px; height: 750px;
+            border-radius: 40px;
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            flex: 0.6;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .bottom-card {
+            background-color: white;
+            border-radius: 40px 40px 0 0;
+            padding: 35px 30px;
+            display: flex; flex-direction: column; gap: 15px;
+            transition: 0.3s ease-in-out;
+        }
+
+        h3 { margin: 0; color: #333; font-size: 22px; }
+
+        .input-group { display: flex; flex-direction: column; gap: 10px; }
+
+        input {
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--primary-purple); }
+
+        .btn-main {
+            background-color: #000;
+            color: white;
+            padding: 16px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-main:active { transform: scale(0.98); }
+
+        #message {
+            font-size: 13px;
+            text-align: center;
+            min-height: 20px;
+        }
+
+        .hidden { display: none; }
+        
+        .footer-text {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .footer-text span {
+            color: var(--primary-purple);
+            cursor: pointer;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <div class="logo-section">
+        <svg width="70" height="70" viewBox="0 0 100 100">
+            <path d="M20 40C20 20 40 10 50 10C60 10 80 20 80 40V70C80 85 65 90 50 90C35 90 20 85 20 70V40Z" fill="white"/>
+            <circle cx="35" cy="45" r="5" fill="#B197FC"/>
+            <circle cx="65" cy="45" r="5" fill="#B197FC"/>
+        </svg>
+    </div>
+
+    <div class="bottom-card">
+        <div id="form-header">
+            <h3 id="title">Buat Akun Baru</h3>
+            <p style="font-size: 14px; color: #777;">Cari teman mu di Loo</p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="fullname" placeholder="Nama Lengkap" class="reg-field">
+            <input type="email" id="email" placeholder="Alamat Email">
+            <input type="password" id="password" placeholder="Kata Sandi">
+            <input type="password" id="confirm-pass" placeholder="Konfirmasi Kata Sandi" class="reg-field">
+        </div>
+
+        <div id="message"></div>
+
+        <button class="btn-main" id="actionBtn">Daftar Sekarang</button>
+
+        <div class="footer-text">
+            <p id="toggle-text">Sudah punya akun? <span onclick="toggleForm()">Masuk di sini</span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let isRegisterMode = true;
+
+    const title = document.getElementById('title');
+    const actionBtn = document.getElementById('actionBtn');
+    const toggleText = document.getElementById('toggle-text');
+    const regFields = document.querySelectorAll('.reg-field');
+    const messageDiv = document.getElementById('message');
+
+    // Fungsi pindah halaman (Login <-> Daftar)
+    function toggleForm() {
+        isRegisterMode = !isRegisterMode;
+        messageDiv.innerText = "";
+        
+        if (isRegisterMode) {
+            title.innerText = "Buat Akun Baru";
+            actionBtn.innerText = "Daftar Sekarang";
+            toggleText.innerHTML = 'Sudah punya akun? <span onclick="toggleForm()">Masuk di sini</span>';
+            regFields.forEach(f => f.classList.remove('hidden'));
+        } else {
+            title.innerText = "Selamat Datang Kembali";
+            actionBtn.innerText = "Masuk";
+            toggleText.innerHTML = 'Belum punya akun? <span onclick="toggleForm()">Daftar di sini</span>';
+            regFields.forEach(f => f.classList.add('hidden'));
+        }
+    }
+
+    // Logika Button
+    actionBtn.addEventListener('click', () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        if (isRegisterMode) {
+            const name = document.getElementById('fullname').value;
+            const confirm = document.getElementById('confirm-pass').value;
+
+            if (!name || !email || !password || !confirm) {
+                showMsg("Harap isi semua kolom!", "red");
+                return;
+            }
+
+            if (password !== confirm) {
+                showMsg("Konfirmasi password tidak cocok!", "red");
+                return;
+            }
+
+            // Simulasi Berhasil Daftar
+            actionBtn.innerText = "Mendaftarkan...";
+            setTimeout(() => {
+                showMsg("Akun berhasil dibuat! Silakan login.", "green");
+                setTimeout(toggleForm, 1500); // Otomatis pindah ke form login
+                actionBtn.innerText = "Daftar Sekarang";
+            }, 2000);
+
+        } else {
+            // Logika Login (seperti sebelumnya)
+            if (email === "user@mirai.com" && password === "123456") {
+                showMsg("Login Berhasil!", "green");
+            } else {
+                showMsg("Email atau password salah!", "red");
+            }
+        }
+    });
+
+    function showMsg(text, color) {
+        messageDiv.innerText = text;
+        messageDiv.style.color = color === "red" ? "var(--error-red)" : "var(--success-green)";
+    }
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - MiraiApp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #B197FC;
+            --bg-body: #f8f9fa;
+            --dark: #2D2D2D;
+        }
+
+        body {
+            margin: 0; font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            display: flex; justify-content: center;
+        }
+
+        .phone-container {
+            background-color: white;
+            width: 375px; min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            padding-bottom: 50px;
+        }
+
+        /* HEADER & FOTO */
+        .header-profile {
+            position: relative;
+            height: 250px;
+        }
+
+        .cover-photo {
+            width: 100%; height: 180px;
+            background: linear-gradient(45deg, #B197FC, #845ef7);
+            object-fit: cover;
+        }
+
+        .profile-pic-container {
+            position: absolute;
+            bottom: 0; left: 20px;
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            border: 4px solid white;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+
+        /* INFO UTAMA */
+        .main-info { padding: 15px 20px; }
+        .name-row { display: flex; align-items: center; gap: 8px; }
+        .role-badge { 
+            background: var(--primary-purple); color: white; 
+            font-size: 11px; padding: 2px 10px; border-radius: 10px; font-weight: bold;
+        }
+        .location { font-size: 13px; color: #888; margin-top: 4px; }
+
+        /* ACTION BUTTONS */
+        .actions { display: flex; gap: 10px; padding: 0 20px; margin-bottom: 20px; }
+        .btn {
+            flex: 1; padding: 10px; border-radius: 20px; border: none;
+            font-weight: 600; cursor: pointer; font-size: 14px;
+        }
+        .btn-follow { background: var(--primary-purple); color: white; }
+        .btn-msg { background: #eee; color: var(--dark); }
+        .btn-poke { background: #fff; border: 1px solid #ddd; width: 45px; flex: none; }
+
+        /* STATS / SPECS */
+        .specs-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 10px; padding: 0 20px; margin-bottom: 20px;
+        }
+        .spec-item {
+            background: #f1f3f5; padding: 10px; border-radius: 12px; text-align: center;
+        }
+        .spec-label { font-size: 11px; color: #888; display: block; }
+        .spec-value { font-size: 14px; font-weight: 700; color: var(--dark); }
+
+        /* BIO & ALBUM */
+        .section-title { padding: 0 20px; font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+        .bio-text { padding: 0 20px; font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 20px; }
+
+        .album-scroll {
+            display: flex; gap: 10px; padding: 0 20px; overflow-x: auto;
+        }
+        .album-item {
+            min-width: 100px; height: 100px; border-radius: 12px;
+            background: #ddd; position: relative; overflow: hidden;
+        }
+        .private-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); display: flex; justify-content: center;
+            align-items: center; color: white; font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <div class="header-profile">
+        <div class="cover-photo"></div>
+        <div class="profile-pic-container">
+            <img src="https://via.placeholder.com/150" alt="Avatar" class="profile-pic">
+        </div>
+    </div>
+
+    <div class="main-info">
+        <div class="name-row">
+            <h2 style="margin:0">Momo Cat</h2>
+            <span class="role-badge">PREMIUM</span>
+        </div>
+        <div class="location">📍 1.2 km dari lokasimu • Aktif 5m yang lalu</div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-follow" id="followBtn" onclick="toggleFollow()">Ikuti</button>
+        <button class="btn btn-msg">Pesan</button>
+        <button class="btn btn-poke" title="Colek" onclick="pokeUser()">👋</button>
+    </div>
+
+    <div class="specs-grid">
+        <div class="spec-item">
+            <span class="spec-label">Umur</span>
+            <span class="spec-value">24 Thn</span>
+        </div>
+        <div class="spec-item">
+            <span class="spec-label">Tinggi</span>
+            <span class="spec-value">165 cm</span>
+        </div>
+        <div class="spec-item">
+            <span class="spec-label">Berat</span>
+            <span class="spec-value">52 kg</span>
+        </div>
+        <div class="spec-item" style="grid-column: span 3;">
+            <span class="spec-label">Tipe Badan</span>
+            <span class="spec-value">Atletis / Slim</span>
+        </div>
+    </div>
+
+    <div class="section-title">Bio</div>
+    <div class="bio-text">
+        Pencinta kopi dan Web3. Suka traveling dan mencari teman baru untuk diskusi santai. Mari mengobrol! ✨
+    </div>
+
+    <div class="section-title">Album Privat (4)</div>
+    <div class="album-scroll">
+        <div class="album-item">
+            <div class="private-overlay">🔒</div>
+        </div>
+        <div class="album-item">
+            <div class="private-overlay">🔒</div>
+        </div>
+        <div class="album-item">
+            <div class="private-overlay">🔒</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFollow() {
+        const btn = document.getElementById('followBtn');
+        if(btn.innerText === "Ikuti") {
+            btn.innerText = "Mengikuti";
+            btn.style.background = "#51cf66";
+        } else {
+            btn.innerText = "Ikuti";
+            btn.style.background = "#B197FC";
+        }
+    }
+
+    function pokeUser() {
+        alert("Kamu mencolek Momo Cat! 😉");
+    }
+</script>
+
+</body>
+</html>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple Chat App - #b097fc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        
+        body { 
+            background-color: #f8f7ff; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
+
+        /* Custom Warna #b097fc */
+        .text-custom { color: #b097fc; }
+        .bg-custom { background-color: #b097fc; }
+        .bg-custom-light { background-color: rgba(176, 151, 252, 0.1); }
+        .shadow-custom { box-shadow: 0 10px 20px -5px rgba(176, 151, 252, 0.4); }
+        
+        .profile-card { aspect-ratio: 1 / 1; }
+    </style>
+</head>
+<body class="max-w-md mx-auto min-h-screen pb-24 shadow-2xl bg-white relative">
+
+    <header class="p-6 pb-2">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-custom tracking-tight">Loo</h1>
+            <div class="flex gap-4 text-gray-300">
+                <i class="fa-solid fa-bell text-xl hover:text-custom transition-colors cursor-pointer"></i>
+                <i class="fa-solid fa-sliders text-xl hover:text-custom transition-colors cursor-pointer"></i>
+            </div>
+        </div>
+
+        <div class="flex bg-gray-50 p-1 rounded-2xl">
+            <button class="flex-1 py-2 bg-custom text-white rounded-xl shadow-md font-semibold text-sm transition-all">Nearby</button>
+            <button class="flex-1 py-2 text-gray-400 font-semibold text-sm">Online</button>
+        </div>
+    </header>
+
+    <main class="p-4 grid grid-cols-2 gap-4">
+        <div class="relative profile-card rounded-[2rem] overflow-hidden shadow-lg group">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-white text-sm font-bold">Adeline, 22</p>
+                <p class="text-white/80 text-[10px]"><i class="fa-solid fa-location-dot mr-1 text-custom"></i>1.2 km</p>
+            </div>
+            <div class="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+        </div>
+
+        <div class="relative profile-card rounded-[2rem] overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-white text-sm font-bold">Rendy, 25</p>
+                <p class="text-white/80 text-[10px]"><i class="fa-solid fa-location-dot mr-1 text-custom"></i>3.5 km</p>
+            </div>
+            <div class="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+        </div>
+
+        <div class="relative profile-card rounded-[2rem] overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-white text-sm font-bold">Jessica, 21</p>
+                <p class="text-white/80 text-[10px]"><i class="fa-solid fa-location-dot mr-1 text-custom"></i>0.8 km</p>
+            </div>
+        </div>
+
+        <div class="relative profile-card rounded-[2rem] overflow-hidden shadow-lg">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
+                <p class="text-white text-sm font-bold">Budi, 27</p>
+                <p class="text-white/80 text-[10px]"><i class="fa-solid fa-location-dot mr-1 text-custom"></i>5.0 km</p>
+            </div>
+            <div class="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full max-w-md bg-white/80 backdrop-blur-lg border-t border-gray-100 p-4 flex justify-around items-center z-50">
+        <button class="text-custom">
+            <i class="fa-solid fa-house text-xl"></i>
+        </button>
+        <button class="text-gray-300 hover:text-custom transition-colors">
+            <i class="fa-solid fa-magnifying-glass text-xl"></i>
+        </button>
+        
+        <div class="relative -mt-12 bg-custom p-4 rounded-2xl shadow-custom text-white transform hover:scale-110 transition-transform cursor-pointer">
+            <i class="fa-solid fa-comment-dots text-2xl"></i>
+        </div>
+
+        <button class="text-gray-300 hover:text-custom transition-colors">
+            <i class="fa-solid fa-heart text-xl"></i>
+        </button>
+        <button class="text-gray-300 hover:text-custom transition-colors">
+            <i class="fa-solid fa-user text-xl"></i>
+        </button>
+    </nav>
+
+</body>
+</html>
+
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI - #b097fc Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f3f0ff; /* Latar belakang luar yang sangat terang */
+        }
+        
+        /* Animasi untuk Floating Menu */
+        .menu-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .menu-closed { transform: translateY(20px); opacity: 0; pointer-events: none; }
+        
+        /* Custom Color Theme #b097fc */
+        .bg-custom-purple { background-color: #b097fc; }
+        .text-custom-purple { color: #b097fc; }
+        .border-custom-purple { border-color: #b097fc; }
+        .purple-gradient { background: linear-gradient(135deg, #b097fc 0%, #9075e3 100%); }
+        .shadow-custom { box-shadow: 0 10px 25px -5px rgba(176, 151, 252, 0.4); }
+    </style>
+</head>
+<body class="max-w-md mx-auto min-h-screen flex flex-col relative bg-white overflow-hidden shadow-2xl">
+
+    <div class="flex-1 p-6 space-y-4 overflow-y-auto bg-purple-50/20">
+        <div class="bg-white p-4 rounded-2xl rounded-bl-none shadow-sm max-w-[80%] border border-purple-100">
+            <p class="text-sm text-gray-700">Halo! Ada fitur baru apa saja di sini? ✨</p>
+        </div>
+        <div class="bg-custom-purple p-4 rounded-2xl rounded-br-none shadow-md max-w-[80%] ml-auto shadow-custom">
+            <p class="text-sm text-white text-right">Cek tombol plus di bawah, ada fitur VIP dan Lokasi baru!</p>
+        </div>
+    </div>
+
+    <div class="px-4 pb-8 pt-4 bg-white border-t border-purple-50 relative">
+        
+        <div id="floatingMenu" class="menu-closed absolute bottom-24 left-4 right-4 bg-white/95 backdrop-blur-xl border border-purple-100 rounded-[2.5rem] p-4 shadow-2xl transition-all duration-300 z-20">
+            <div class="grid grid-cols-3 gap-4">
+                <button class="flex flex-col items-center gap-2 group">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-location-dot text-xl"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-500">Lokasi</span>
+                </button>
+
+                <button class="flex flex-col items-center gap-2 group">
+                    <div class="w-12 h-12 bg-custom-purple rounded-2xl flex items-center justify-center text-white shadow-lg shadow-purple-200 group-hover:scale-110 transition-transform shadow-custom">
+                        <i class="fa-solid fa-crown text-xl"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-custom-purple uppercase tracking-wider">VIP</span>
+                </button>
+
+                <button class="flex flex-col items-center gap-2 group">
+                    <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-custom-purple group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-eye-slash text-xl"></i>
+                    </div>
+                    <span class="text-[10px] font-bold text-gray-500">Sekali Lihat</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="toggleMenu()" id="plusBtn" class="w-12 h-12 bg-custom-purple rounded-2xl text-white shadow-lg flex items-center justify-center transition-all duration-300 shadow-custom">
+                <i class="fa-solid fa-plus text-xl transition-transform duration-300" id="plusIcon"></i>
+            </button>
+
+            <div class="flex-1 bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3 flex items-center gap-3">
+                <button class="text-gray-400 hover:text-custom-purple transition-colors">
+                    <i class="fa-solid fa-keyboard"></i>
+                </button>
+                
+                <input type="text" placeholder="Tulis pesan..." class="bg-transparent flex-1 text-sm outline-none text-gray-700">
+                
+                <button class="text-gray-400 hover:text-custom-purple transition-colors">
+                    <i class="fa-solid fa-camera"></i>
+                </button>
+            </div>
+
+            <button class="w-12 h-12 bg-purple-50 text-custom-purple rounded-2xl flex items-center justify-center hover:bg-purple-100 transition-all">
+                <i class="fa-solid fa-microphone text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('floatingMenu');
+            const icon = document.getElementById('plusIcon');
+            const btn = document.getElementById('plusBtn');
+            
+            if (menu.classList.contains('menu-closed')) {
+                menu.classList.remove('menu-closed');
+                menu.classList.add('menu-open');
+                icon.style.transform = 'rotate(45deg)';
+            } else {
+                menu.classList.remove('menu-open');
+                menu.classList.add('menu-closed');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>
